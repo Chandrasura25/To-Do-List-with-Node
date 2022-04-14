@@ -25,7 +25,7 @@ mongoose.connect(URI,(err)=>{
 })
  app.set("view engine","ejs"); 
  app.get('/' ,(req,res)=>{
-     res.send('todos.ejs')
+     res.render('todos')
  }) 
  app.get("/todos",(req,res)=>{
 
