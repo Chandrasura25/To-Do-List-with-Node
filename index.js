@@ -26,21 +26,27 @@ mongoose.connect(URI,(err)=>{
  app.set("view engine","ejs"); 
 
  app.get('/' ,(req,res)=>{
-     res.render('todos')
+        userModel.find((err,result) =>{
+        if(err){
+            console.log('error occured')
+        }
+        else{
+     res.render('todos', {result})
+        }
+    });
  }) 
  app.get("/todos",(req,res)=>{
-
     userModel.find((err,result) =>{
         if(err){
             console.log('error occured')
         }
         else{
-            // console.log(result);
-     res.render('todos.ejs', {result})
+       
+     res.render('todos', {result})
         }
     });
  });
-app.post('/todos',(req,res)=>{
+app.post('/',(req,res)=>{
     userModel.find({ToDos:req.body.ToDos},(err,result)=>{
         console.log(result)
         if( result.length>0) {
