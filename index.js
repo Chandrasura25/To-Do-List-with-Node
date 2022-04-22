@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const ejs = require("ejs");
-const PORT =process.env.PORT||2000
+const PORT = process.env.PORT||2000
 require('dotenv').config()
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
-const URI =process.env.MONGO_URI
+const URI = process.env.MONGO_URI
 const mongoose = require('mongoose')
 
 let userSchema = mongoose.Schema({
@@ -78,14 +78,14 @@ app.post('/',(req,res)=>{
      }
      })
  })
- app.post('/edit',(req,res)=>{
-     userModel.find({_id:req.body.uniqueID},(err,result)=>{
+  app.post('/edit',(req,res)=>{
+    userModel.find({_id:req.body.uniqueID},(err,result)=>{
          if(err){
              console.log(err)
              console.log('error occured')
          }
          else{
-             res.render("todos",{result})
+             res.render("edit",{result})
              console.log(result)
          }
      })
